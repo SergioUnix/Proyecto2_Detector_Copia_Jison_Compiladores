@@ -142,7 +142,7 @@ divError.innerHTML = data.toString();
       }
   });
 }
-function ats2() {
+function grafica2() {
     var ventana_actual=document.getElementById("textarea");
      var texto=ventana_actual.value;
      alert("ENTRADA: "+ texto);

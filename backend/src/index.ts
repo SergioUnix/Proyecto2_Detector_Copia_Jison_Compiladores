@@ -9,8 +9,10 @@ import { Node } from './Abstract/Node';
 import { fstat } from 'fs';
 import { json } from 'body-parser';
 
+import {Rep} from './REPORTES/Rep';
 
-import {GraficaArbolAts} from './ManejoErrores/GraficaArbolAts'; 
+import { GraficaArbolAts } from './ManejoErrores/GraficaArbolAts';
+import { Clase } from './REPORTES/Clase';
 
 
 var bodyParser = require("body-parser");
@@ -21,7 +23,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 
@@ -57,10 +59,10 @@ app.post('/analizar', (req, res) => {
   }
   //const tree = MyParser_300445.parse(entrada);
   const tree = parser.parse(entrada);
-  console.log("entra al arbol:"+ entrada);
+  console.log("entra al arbol:" + entrada);
   const tabla = new Table(null);
- 
-  var contador_de_sentencias = 0 ; 
+
+  var contador_de_sentencias = 0;
   tree.instructions.map((m: any) => {
     const res = m.execute(tabla, tree);
     contador_de_sentencias++;
@@ -74,12 +76,12 @@ app.post('/analizar', (req, res) => {
       const error = new Exception('Semantico',
         `Sentencia continue fuera de un ciclo`,
         res.line, res.column);
-      tree.excepciones.push(error); 
+      tree.excepciones.push(error);
       tree.console.push(error.toString());
     }
-    console.log("# de sentencias: "+contador_de_sentencias);
+    console.log("# de sentencias: " + contador_de_sentencias);
   });
-  
+
   res.render('views/index', {
     entrada,
     consola: tree.console,
@@ -123,38 +125,30 @@ app.post('/analizarYO', (req, res) => {
   if (!entrada) {
     return res.redirect('/');
   }
- 
- const tree = MyParser_300445.parse(entrada); 
- // console.log("entra al arbol:"+ entrada);
+  const tree = MyParser_300445.parse(entrada);
   const tabla = new Table(null); // EN ESTE CASO mando null porque previamente no tengo ninguna TABLA 
   console.log("-------------INICIA EL ARBOL----------------");
   console.log(tree);
   console.log("------------------- FIN -------------------");
- /*
+  /*convierte el arbol en JSON
+   try {
+   var json = JSON.stringify(tree,null ,2);
+  // console.log(json);
+  } catch (error) {
+    console.log("ERROR..!!!!!!!!!  AL PARSEAR A JISON ");
+  
+  }
+  */
   try {
-  var json = JSON.stringify(tree,null ,2);
- // console.log(json);
- } catch (error) {
-   console.log("ERROR..!!!!!!!!!  AL PARSEAR A JISON ");
- 
- }
- */
+    tree.instructions.map((m: any) => {
+      //console.log(m);
+      const res = m.execute(tabla, tree);
 
-
-try{
-  tree.instructions.map((m: any) => {
-    //console.log(m);
-    const res = m.execute(tabla, tree);
-
-  });
-}catch(error){
-  console.log("ERRORES EN LA ENTRADA  en ejecucion del ATS");
-  console.log(Errores.geterror());
-}
-
-
-
- 
+    });
+  } catch (error) {
+    console.log("ERRORES EN LA ENTRADA  en ejecucion del ATS");
+    console.log(Errores.geterror());
+  }
   res.render('views/index', {
     entrada,
     consola: tree.console,
@@ -165,36 +159,63 @@ try{
 
 
 
-app.post('/comunicar/', function (req, res) {
-  Errores.clear();// limpiamos la lista 
-  var entrada1=req.body.text1;
-  var entrada2 = req.body.text2;
-  const tree = MyParser_300445.parse(entrada1); 
- // console.log("entra al arbol:"+ entrada);
-  const tabla = new Table(null); 
 
-  try{
-    tree.instructions.map((m: any) => {
-      //console.log(m);
+
+
+
+/*
+
+
+                               PETICIONES QUE VAN HACIA EL FRONTED 
+
+*/ 
+
+
+
+
+
+
+app.post('/errores/', function (req, res) { // SOLO ES NECESARIO UNA ENTRADA DE TEXTO 
+  GraficaArbolAts.clear();
+  Errores.clear();
+  Rep.clear();
+  var entrada1 = req.body.text1;
+  const tree = MyParser_300445.parse(entrada1);
+  const tabla = new Table(null);
+    
+  if(Errores.hay_errores()){
+    console.log(Errores.geterror());
+    res.send(Errores.geterror());
+  }else{
+    // toca recorrerlo para ver si no hay errores semanticos 
+    try {
+      tree.instructions.map((m: any) => {
       const res = m.execute(tabla, tree);
   
     });
-  }catch(error){
-    console.log("ERRORES EN LA ENTRADA  en ejecucion del ATS");
-    console.log(Errores.geterror());
-     res.send(Errores.geterror());
-  }
-  
+    } catch (error) {
+      console.log("ERRORES EN LA ENTRADA  en ejecucion del ATS");
+    }
+    if(Errores.hay_errores()){
+      console.log(Errores.geterror());
+      res.send(Errores.geterror());
 
+    }else{
+
+      console.log("ENTRADA OK ");
+      res.send("ENTRADA LIBRE DE ERRORES");
+    }
+    
+
+  }
 
 });
 
 
-
- /*     ESTE ES PARA EL AST */
 app.post('/ats/', function (req, res) { // PARA ESTA FUNCION SOLO ES NECESARIA UNA ENTRADA DE TEXTO 
   GraficaArbolAts.clear();
   Errores.clear();
+  Rep.clear();
   var entrada1 = req.body.text1;
   const tree = MyParser_300445.parse(entrada1);
   const tabla = new Table(null);
@@ -231,40 +252,62 @@ app.post('/ats/', function (req, res) { // PARA ESTA FUNCION SOLO ES NECESARIA U
 });
 
 
-/*   ESTE ES PARA ERRORES */
-app.post('/errores/', function (req, res) { // SOLO ES NECESARIO UNA ENTRADA DE TEXTO 
-  Errores.clear();// limpiamos la lista 
+
+
+
+
+
+
+app.post('/reportes/', function (req, res) { // PARA ESTA FUNCION SOLO ES NECESARIA UNA ENTRADA DE TEXTO 
+  console.log("°°°°°°°°REPORTE DE COPIAS PETICION°°°°°°°°°");
+  GraficaArbolAts.clear();
+  Errores.clear();
+  Rep.clear(); 
+  console.log(req.body);
   var entrada1 = req.body.text1;
-  const tree = MyParser_300445.parse(entrada1);
-  const tabla = new Table(null);
-    
-  if(Errores.hay_errores()){
-    console.log(Errores.geterror());
-    res.send(Errores.geterror());
-  }else{
-    // toca recorrerlo para ver si no hay errores semanticos 
-    try {
-      tree.instructions.map((m: any) => {
-      const res = m.execute(tabla, tree);
+  var entrada2 = req.body.text2;
+  const tree1 = MyParser_300445.parse(entrada1);
+  const tabla1 = new Table(null);
   
+  // se supone que viene sin errores 
+  Rep.t1 = true ; 
+    try {// lo mando a recorrer 
+    tree1.instructions.map((m: any) => {
+      const res = m.execute(tabla1, tree1);
     });
-    } catch (error) {
-      console.log("ERRORES EN LA ENTRADA  en ejecucion del ATS");
-    }
-    if(Errores.hay_errores()){
-      console.log(Errores.geterror());
-      res.send(Errores.geterror());
-
-    }else{
-
-      console.log("ENTRADA OK ");
-      res.send("ENTRADA LIBRE DE ERRORES");
-    }
-    
-
+  } catch (error) {
+    console.log("ERRORES en la entrada1 EJECUCION ATS ");
+    console.log(Errores.geterror());
   }
+Rep.t1 = false;
 
+
+
+
+
+const tree2 = MyParser_300445.parse(entrada2);
+const tabla2 = new Table(null);
+
+
+
+
+// se supone que viene sin errores 
+Rep.t2 = true; // activo
+  try {// lo mando a recorrer 
+  tree2.instructions.map((m: any) => {
+    const res = m.execute(tabla2, tree2);
+  });
+} catch (error) {
+  console.log("ERRORES en la entrada1 EJECUCION ATS ");
+  console.log(Errores.geterror());
+}
+Rep.t2 = false; // corto el flujo ya no agarra mas clases 
+/*
+
+Rep.printClases1(); 
+Rep.printClases2();  */
+Rep.DeterminarCopiaClases();
+console.log(Rep.ListaVariablesCopia);
+
+res.send(Rep.getHTML());
 });
-
-
-

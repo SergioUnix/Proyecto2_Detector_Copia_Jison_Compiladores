@@ -66,9 +66,18 @@
         <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btn btn-info">Agregar Pestana</button>
         <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btn btn-danger">Quitar Pestana</button>
         <button onclick="errores();" id="analizarJAVA" >Errores <i class="fa fa-code" aria-hidden="true"></i></button>
-        <button onclick="ats();" class="btn btn-success text-black">Genero AST <i class="fa fa-code" aria-hidden="true"></i></button>
+        <button onclick="grafica();" class="btn btn-success text-black">Genero AST <i class="fa fa-code" aria-hidden="true"></i></button>
 
-   
+   <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Botones
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" onclick="quitar();">Quitar Pestaña</a>
+    <a class="dropdown-item" onclick="errores();">Errores</a>
+    <a class="dropdown-item" onclick="grafica();" >Genero AST</a>
+  </div>
+</div>
         
 
         <div id="pestanas">
@@ -87,7 +96,7 @@
         <button onclick="agregar2();" title="AgregarPestana" id="btn2" class="btn btn-info">Agregar Pestana</button>
         <button onclick="quitar2();" title="QuitarPestana" id="btn2" class="btn btn-danger">Quitar Pestana</button>
         <button onclick="errores2();" id="analizarJAVA" >Errores <i class="fa fa-code" aria-hidden="true"></i></button>
-        <button onclick="ats2();" class="btn btn-success text-black">Genero AST <i class="fa fa-code" aria-hidden="true"></i></button>
+        <button onclick="grafica2();" class="btn btn-success text-black">Genero AST <i class="fa fa-code" aria-hidden="true"></i></button>
         <div id="pestanas2">
             <ul id=lista2></ul>
         </div>

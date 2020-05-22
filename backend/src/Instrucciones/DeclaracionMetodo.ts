@@ -16,20 +16,30 @@ let CErrores=require('../ManejoErrores/Errores');
 
 
 import {GraficaArbolAts} from '../ManejoErrores/GraficaArbolAts'; 
+import { Rep } from "../REPORTES/Rep";
+import { Metodo } from "../REPORTES/Metodo";
 
 
 export class DeclaracionMetodo extends Node {
     type: Type;
-    identifier: String;
+    identifier: string;
     value: Node;
 
-    constructor(type: Type, identifier: String, value: Node , line: Number, column: Number) {
-        super(type, line, column);
+    constructor(type: Type, identifier: string, value: Node , line: Number, column: Number) {
+        super( new Type(types.VOID), line, column);
         this.identifier = identifier;
         this.value = value;
     }
 
     execute(table: Table, tree: Tree):any {
+        if(Rep.t1 == true || Rep.t2 == true){
+            Rep.nombreMetodoActual = this.identifier; 
+            Rep.addMetodo( Rep.claseActual.id , new Metodo( this.identifier , this.type.toString()));
+        }
+        console.log(this.type.toString());
+
+
+
         GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>DeclaracionMetodos\n"); 
 
 
@@ -55,7 +65,7 @@ export class DeclaracionMetodo extends Node {
    
        if(res instanceof Return_funcion){
         console.log("ERROR RETURN DE FUNCION ADENTRO DE UN METODO ");
-        CErrores.Errores.add(new CNodoError.NodoError("Semantico"," RETURN DE FUNCION ADENTRO DE UN METODO"+" Columna:"+ res.column ,res.line));
+        CErrores.Errores.add(new CNodoError.NodoError("Semantico"," RETURN DE FUNCION ADENTRO DE UN METODO    "+" Columna:"+ res.column ,res.line));
         GraficaArbolAts.add("</li>\n");
         return res;
        }

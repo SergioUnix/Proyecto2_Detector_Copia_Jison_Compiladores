@@ -202,7 +202,7 @@ divError.innerHTML = data.toString();
   });
   console.log("OK LLAMANDO AL METODO");    
 }
-function ats() {
+function grafica() {
     var ventana_actual=document.getElementById(get_vent());
      var texto=ventana_actual.value;
      alert("ENTRADA: "+ texto);
