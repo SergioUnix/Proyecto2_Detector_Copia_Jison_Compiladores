@@ -49,7 +49,7 @@ function agregar2() {
     li.setAttribute('id','codigo');
     var a2=document.createElement("a");
     a2.setAttribute('id','a');
-    a2.text='Texto';
+    a2.text='Consola';
     li.appendChild(a2);
     lu2.appendChild(li);
     var contenido2=document.getElementById("contenidopestanas2");
@@ -84,8 +84,6 @@ function quitar2(){
         var contenido2=document.getElementById("contenidopestanas2");
         contenido2.innerHTML="";
            }catch(error){
-
-
            }
 }
 function AbrirArchivo2(files){
@@ -133,7 +131,7 @@ function errores2() {
   var texto=ventana_present.value;
   alert("Imput: "+ texto);
   var url = 'http://localhost:3000/errores/';
-      var divError = document.getElementById("erroresConsola2");
+      var divError = document.getElementById("err2");
   $.post(url, { text1: texto }, function (data, status) {
       if (status.toString() == "success") {
           console.log(data)
@@ -149,8 +147,8 @@ function ats2() {
      var texto=ventana_actual.value;
      alert("ENTRADA: "+ texto);
      var url = 'http://localhost:3000/ats/';
-     var rep = document.getElementById("ats2");
-     var tituloast = document.getElementById("tituloAST2");
+     var rep = document.getElementById("grap2");
+     var tituloast = document.getElementById("graptitulo2");
      $.post(url, { text1: texto }, function (data, status) {
          if (status.toString() == "success") {
              console.log(data)

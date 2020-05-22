@@ -23,10 +23,7 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-	<link rel="stylesheet" href="../jstree/dist//themes//default/style.min.css" />
-
-
-
+  	<link rel="stylesheet" href="../jstree/dist//themes//default/style.min.css" />
     <title>Proyecto2</title>
 </head>
 
@@ -59,8 +56,9 @@
     </nav>
   
     <!-- ------------------------------Termina el Nav----------------------------------------------r-->
-
-
+ 
+    <br>
+    <br><br><br>
     <div class="contenedor">
         <h3>Consola Numero 1</h3>
         <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btn btn-dark">
@@ -80,9 +78,8 @@
             <div id="contenidopestanas"></div>
         </body>
       </div>
-    <br>
-    <br>
-    <br>
+
+    <br><br>
     <div class="contenedor">
         <h3>Consola Numero 2</h3>
         <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo2(this.files)" class="btn btn-dark">
@@ -98,6 +95,11 @@
             <div id="contenidopestanas2"></div>
         </body>
       </div>
+
+
+   
+
+
 </body>
 
 <!--                 Aca va la parte del arbol para ambas consolas         -->	
@@ -109,17 +111,27 @@
         </style>
     </head>
     <body>
-        <h1 style="color: azure;" id="tituloAST"></h1>
 
-        <div id= "ats" >		
-        </div>
- <div id="erroresConsola1">
-</div>
-  <h1 style="color: azure;" id="tituloAST2"></h1>
-  <div id= "ats2" >		
-  </div>
-<div id="erroresConsola2">
-</div>
+      <div class="modal-body row"> 
+        <div class="col-md-6"> 
+ <h1 style="color: rgb(179, 84, 12);" id="graptitulo1"></h1>
+  <div id= "grap1" >		
+  </div> <div id="err1"></div>
+        <!-- Your first column here --> 
+        </div> 
+        <div class="col-md-6"> 
+
+ <h1 style="color: rgb(179, 84, 12);" id="graptitulo2"></h1>
+  <div id= "grap2" >		
+  </div><div id="err2"></div>
+        <!-- Your second column here --> 
+        </div> 
+    </div> 
+
+
+
+ 
+ 
 <script src="./jstree/dist/jstree.min.js"></script>
 </body>
 </html>

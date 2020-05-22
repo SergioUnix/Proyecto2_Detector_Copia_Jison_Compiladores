@@ -1,4 +1,3 @@
-
 var contador=0;
 function get_cont(){
     return contador++;
@@ -28,8 +27,6 @@ function deletepes(pestana){
         }
     }
 }
-
-/*--------------------------------------Funcion Al Cambiar Ventana---------------------------------------*/
 function index(pestanias, pestania) {
     var id=pestania.replace('pestana','');
     set_vent('textarea'+id);
@@ -76,8 +73,6 @@ function index(pestanias, pestania) {
         });
     }catch(error) {}
 }
-
-/*---------------------------------------Funcion Agregar Pestania----------------------------------------*/
 function agregar() {
     var x=get_cont();
     var lu=document.getElementById("lista");
@@ -127,9 +122,6 @@ function quitar(){
         deletepes(get_vent());
     }catch(error){}
 }
-
-
-/*-----------------------------------------------File---------------------------------------------------*/
 function AbrirArchivo(files){
     var file = files[0];
     var reader = new FileReader();
@@ -161,16 +153,11 @@ function AbrirArchivo(files){
     var a=document.getElementById(get_vent().replace("textarea","a"));
     a.text=file.name;
     linkedlist(get_vent(),file.name);
-
     var file_input=document.getElementById("fileInput");
     document.getElementById('fileInput').value="";
 }
-
 function DescargarArchivo(){
     var ta=document.getElementById(get_vent());
-    var contenido=ta.value;//texto de vent actual
-
-    //formato para guardar el archivo
     var hoy=new Date();
     var dd=hoy.getDate();
     var mm=hoy.getMonth()+1;
@@ -179,7 +166,6 @@ function DescargarArchivo(){
     var MM=hoy.getMinutes();
     var formato=get_vent().replace("textarea","")+"_"+dd+"_"+mm+"_"+yyyy+"_"+HH+"_"+MM;
 
-    var nombre="DESCARGA"+formato+".txt";//nombre del archivo
     var file=new Blob([contenido], {type: 'text/plain'});
 
     if(window.navigator.msSaveOrOpenBlob){
@@ -197,30 +183,16 @@ function DescargarArchivo(){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function errores() {
     var ventana_actual=document.getElementById(get_vent());
   var texto=ventana_actual.value;
   alert("ENTRADA: "+ texto);
   var url = 'http://localhost:3000/errores/';
-      var divError = document.getElementById("erroresConsola1");
+      var divError = document.getElementById("err1");
   $.post(url, { text1: texto }, function (data, status) {
       if (status.toString() == "success") {
           console.log(data)
           alert("El resultado es: " + data.toString());
- 
-/*                    ACA inyecto el html recibido desde el NodeJs         */     
-
 divError.innerHTML = data.toString();
 
 } else {
@@ -230,32 +202,21 @@ divError.innerHTML = data.toString();
   });
   console.log("OK LLAMANDO AL METODO");    
 }
-
-
-
-
-
-
-
 function ats() {
     var ventana_actual=document.getElementById(get_vent());
      var texto=ventana_actual.value;
      alert("ENTRADA: "+ texto);
      var url = 'http://localhost:3000/ats/';
-     var rep = document.getElementById("ats");
-     var tituloast = document.getElementById("tituloAST");
+     var rep = document.getElementById("grap1");
+     var tituloast = document.getElementById("graptitulo1");
      $.post(url, { text1: texto }, function (data, status) {
          if (status.toString() == "success") {
              console.log(data)
              alert("reporte generado");
-   /*                   ACA inyecto el html recibido desde el NodeJs         */     
    tituloast.innerHTML ="Reporte consola 1 AST"; 
    rep.setAttribute('style','background-color: azure;');
    rep.setAttribute('class',"demo");
    rep.innerHTML = data;
-   
-   
-    /*      en siguiente codigo es como mandarlo a graficar         */    
             $('#ats').jstree(); 
    
          } else {
@@ -267,30 +228,3 @@ function ats() {
    
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//var int=self.setInterval('refresh()',8000);
-function refresh(){
- location.reload(true);
-}
-function abrirUrl(url, contenedor){
-    $.get(url,{},function(data){
-        $("#"+contenedor).html(data);
-
-    });
-}
