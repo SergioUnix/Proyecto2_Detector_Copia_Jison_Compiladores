@@ -1,7 +1,7 @@
 {
   "name": "prueba",
   "version": "1.0.0",
-  "description": "Proyecto 2 compiladores 1",
+  "description": "Proyecto2",
   "main": "index.js",
   "scripts": {
     "ts:node": "ts-node src/",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PabloAndresArg/COMPI1_PROYECTO_2.git"
+    "url": "git+https://github.com/SergioUnix/Proyecto2_Traductor_Jison_Compiladores"
   },
-  "author": "Pablo",
+  "author": "Sergio",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PvasquezF/Interprete-Jison/issues"
+    "url": "https://github.com/SergioUnix/Proyecto2_Traductor_Jison_Compiladores"
   },
-  "homepage": "https://github.com/PvasquezF/Interprete-Jison#readme",
+  "homepage": "https://github.com/SergioUnix/Proyecto2_Traductor_Jison_Compiladores",
   "devDependencies": {
     "nodemon": "^2.0.3",
     "tslint": "^6.1.1",

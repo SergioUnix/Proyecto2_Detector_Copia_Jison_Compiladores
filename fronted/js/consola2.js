@@ -157,7 +157,7 @@ function grafica2() {
    rep.setAttribute('style','background-color: azure;');
    rep.setAttribute('class',"demo");
    rep.innerHTML = data;
-    $('#ats2').jstree(); 
+    $('#grap2').jstree(); 
    
          } else {
              alert("Error Conected:" + status);
@@ -166,3 +166,15 @@ function grafica2() {
    
    }
    
+
+   function limpiar2(){
+    try{
+        var titulo=document.getElementById("gratitulo1");
+        titulo.innerHTML="";
+        var grafica=document.getElementById("grap1");
+        grafica.innerHTML="";
+        var error=document.getElementById("err1");
+        error.innerHTML="";
+           }catch(error){
+           }
+}

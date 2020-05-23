@@ -6,17 +6,11 @@ import {types} from "../utils/Type";
 import {Metodo} from '../REPORTES/Metodo';
 
 export class FuncionCopia {
-    /*
-    mostrará el tipo de retorno del método y/o función, nombre del mismo, listado de sus
-   parámetros con tipo y nombre, nombre de la clase al que pertenece.
-    
-    */ 
     tipo: any; 
     tipoDeRetorno:string;
     nombreFuncion:string; 
     nombreClase:string;
     listaDeParametros:string; 
-
     constructor(nomFuncion:string , tip:any,tipoRe:string , noClse:string , list:string ){
      this.nombreFuncion = nomFuncion; 
      this.tipo = tip;
@@ -24,10 +18,4 @@ export class FuncionCopia {
      this.nombreClase = noClse; 
      this.listaDeParametros = list; 
     }
-
-  
-
-    
-
-
 }

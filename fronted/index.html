@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./codemirror//theme//eclipse.css">
     <script src="./codemirror/mode/clike/clike.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css//Sergio.css" />
+    
     <link rel="stylesheet" href="../js/codemirror//lib//codemirror.css">
     <link rel="stylesheet" href="../js/codemirror//theme//dracula.css">
     <link rel="stylesheet" href="./website/style.css">
@@ -61,23 +61,15 @@
     <br><br><br>
     <div class="contenedor">
         <h3>Consola Numero 1</h3>
+        <button onclick="DescargarArchivo();" id="guardar" title="Guardar" class="btn btn-dark">Guardar</button>
+        <button onclick="agregar();" title="AgregarPestana"  class="btn btn-dark">New tab</button>
+        <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btn btn-dark">Remove tab</button>
+        <button onclick="errores();" class="btn btn-dark" >Errores</button>
+        <button onclick="grafica();" class="btn btn-dark">Genero AST</button>
+        <button onclick="reportes();" class="btn btn-dark">Reportes</button>
+        <button onclick="limpiar1();" class="btn btn-dark">Clean output</button>
         <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btn btn-dark">
-        <button onclick="DescargarArchivo();" id="guardar" title="Guardar" class="btn btn-warning">Guardar</button>
-        <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btn btn-info">Agregar Pestana</button>
-        <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btn btn-danger">Quitar Pestana</button>
-        <button onclick="errores();" id="analizarJAVA" >Errores <i class="fa fa-code" aria-hidden="true"></i></button>
-        <button onclick="grafica();" class="btn btn-success text-black">Genero AST <i class="fa fa-code" aria-hidden="true"></i></button>
-
-   <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Botones
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" onclick="quitar();">Quitar Pestaña</a>
-    <a class="dropdown-item" onclick="errores();">Errores</a>
-    <a class="dropdown-item" onclick="grafica();" >Genero AST</a>
-  </div>
-</div>
+ 
         
 
         <div id="pestanas">
@@ -90,13 +82,16 @@
 
     <br><br>
     <div class="contenedor">
-        <h3>Consola Numero 2</h3>
+        <h3>Consola Numero 2</h3>        
+        <button onclick="DescargarArchivo2();" id="guardar2" title="Guardar" class="btn btn-dark">Guardar</button>
+        <button onclick="agregar2();" title="AgregarPestana" id="btn2" class="btn btn-dark">New tab</button>
+        <button onclick="quitar2();" title="QuitarPestana" id="btn2" class="btn btn-dark">Remove tab</button>
+        <button onclick="errores2();" class="btn btn-dark">Errores</button>
+        <button onclick="grafica2();" class="btn btn-dark">Genero AST</button>
+        <button onclick="reportes();" class="btn btn-dark">Reportes</button>
+        <button onclick="limpiar2();" class="btn btn-dark">Clean output</button>
         <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo2(this.files)" class="btn btn-dark">
-        <button onclick="DescargarArchivo2();" id="guardar2" title="Guardar" class="btn btn-warning">Guardar</button>
-        <button onclick="agregar2();" title="AgregarPestana" id="btn2" class="btn btn-info">Agregar Pestana</button>
-        <button onclick="quitar2();" title="QuitarPestana" id="btn2" class="btn btn-danger">Quitar Pestana</button>
-        <button onclick="errores2();" id="analizarJAVA" >Errores <i class="fa fa-code" aria-hidden="true"></i></button>
-        <button onclick="grafica2();" class="btn btn-success text-black">Genero AST <i class="fa fa-code" aria-hidden="true"></i></button>
+        
         <div id="pestanas2">
             <ul id=lista2></ul>
         </div>
@@ -139,13 +134,21 @@
 
 
 
+
+
  
  
 <script src="./jstree/dist/jstree.min.js"></script>
 </body>
 </html>
 
-<!-- llega hasta aqui el reporte     -->
+<!-- ------------- Reportes en Cadena  desde el NodeJS  ----------------    -->
+
+ <div class="col-md-12"> 
+ <h1 style="color: rgb(179, 84, 12);" id="reportesTitulo"></h1>
+ <div id="repContenido"></div>
+        <!-- Your first column here --> 
+  </div> 
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">

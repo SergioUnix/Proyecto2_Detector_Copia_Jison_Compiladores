@@ -183,12 +183,13 @@ function DescargarArchivo(){
     }
 }
 
-function errores() {
-    var ventana_actual=document.getElementById(get_vent());
+
+function reportes() {
+  var ventana_actual=document.getElementById(get_vent());
   var texto=ventana_actual.value;
   alert("ENTRADA: "+ texto);
-  var url = 'http://localhost:3000/errores/';
-      var divError = document.getElementById("err1");
+  var url = 'http://localhost:3000/reportes/';
+      var divError = document.getElementById("repContenido");
   $.post(url, { text1: texto }, function (data, status) {
       if (status.toString() == "success") {
           console.log(data)
@@ -202,6 +203,24 @@ divError.innerHTML = data.toString();
   });
   console.log("OK LLAMANDO AL METODO");    
 }
+function reportes() {
+  var consola1=document.getElementById(get_vent());
+  var consola2=document.getElementById("textarea");
+   var texto2 = consola2.value; var texto1 = consola1.value;  
+   alert("Console 1: "+ texto1);alert("Console 2: "+ texto2);
+   var url = 'http://localhost:3000/reportes/';
+   var copias_div = document.getElementById("repContenido");
+   $.post(url, { text1: texto1 , text2: texto2 }, function (data, status) {
+         if (status.toString() == "success") {
+             console.log(data)
+            copias_div.innerHTML = data;    
+   
+         } else {
+             alert("Error estado de conexion:" + status);
+         }
+     });
+
+ }
 function grafica() {
     var ventana_actual=document.getElementById(get_vent());
      var texto=ventana_actual.value;
@@ -217,7 +236,7 @@ function grafica() {
    rep.setAttribute('style','background-color: azure;');
    rep.setAttribute('class',"demo");
    rep.innerHTML = data;
-            $('#ats').jstree(); 
+            $('#grap1').jstree(); 
    
          } else {
              alert("Error estado de conexion:" + status);
@@ -227,4 +246,14 @@ function grafica() {
    }
    
 
-
+   function limpiar1(){
+    try{
+        var titulo=document.getElementById("gratitulo1");
+        titulo.innerHTML="";
+        var grafica=document.getElementById("grap1");
+        grafica.innerHTML="";
+        var error=document.getElementById("err1");
+        error.innerHTML="";
+           }catch(error){
+           }
+}

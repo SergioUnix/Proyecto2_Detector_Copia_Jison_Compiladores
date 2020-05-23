@@ -8,9 +8,4 @@ export class ClaseCopia {
         this.id = id; 
         this.cantidaMetodos = cantidaMetodos; 
     }
-
-
-    
-
-
 }

@@ -10,23 +10,9 @@ import {GraficaArbolAts} from '../ManejoErrores/GraficaArbolAts';
 import { Rep } from "../REPORTES/Rep";
 import { Clase } from "../REPORTES/Clase";
 import { report } from "process";
-/**
- * @class Reasigna el valor de una variable existente
- */
-
-
-
 export class ClaseInstruccion extends Node {
     identifier: string;
     contenido:  Array<Node>;
-
-    /**
-     * @constructor 
-     * @param identifier
-     * @param value valor de la variable
-     * @param line
-     * @param column 
-     */
     constructor(identifier: string, value:  Array<Node>, line: Number, column: Number) {
         super(null, line, column);
         this.identifier = identifier;
@@ -51,13 +37,11 @@ export class ClaseInstruccion extends Node {
 
 
         GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>CLASE\n");
-       // CIERRA DE UNA VEZ PORQUE NO AVANZA RECURSIVAMENTE 
         GraficaArbolAts.add("<ul>");
-        /* UNA CLASE POSEE SU PROPIO AMBITO DE VARIABLES POR ESO LE CREO UNA TABLE */
         GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>ID("+this.identifier+")</li>\n");
         const newtable = new Table(table);
 
-        for (let i = 0; i < this.contenido.length; i++) { // RECORRO CADA COSA DE MI CLASE 
+        for (let i = 0; i < this.contenido.length; i++) {
             const res = this.contenido[i].execute(newtable, tree);
             
             if (res instanceof Continue) {
