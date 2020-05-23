@@ -8,20 +8,12 @@ import { Break } from "../Expresiones/Break";
 import { Simbol } from "../Simbols/Simbol";
 import { GraficaArbolAts } from "../ManejoErrores/GraficaArbolAts";
 
-/**
- * @class Reasigna el valor de una variable existente
- */
+
 export class Incre_decre extends Node {
     identifier: String;
     simbolo: String;
 
-    /**
-     * @constructor Crea el nodo instruccion para la sentencia Asignacion
-     * @param identifier nombre de la variable
-     * @param value valor de la variable
-     * @param line Linea de la sentencia if
-     * @param column Columna de la sentencia if
-     */
+  
     constructor(identifier: String, simbolo: String, line: Number, column: Number) {
         super(null, line, column);
         this.identifier = identifier;

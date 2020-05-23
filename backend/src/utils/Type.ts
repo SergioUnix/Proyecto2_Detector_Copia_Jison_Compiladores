@@ -9,20 +9,12 @@ export enum types {
     CHAR
 }
 
-/**
- * 
- * @class Permite llevar el control de los tipos del lenguaje
- */
+
 export class Type{
     type : types;
     typeString: string; 
 
-    /**
-     * 
-     * @constructor Crea un nuevo tipo con el tipo primitivo indicado en el enum
-     * @param type Tipo seleccionado para la variable o funcion
-     * 
-     */
+  
     constructor(type: types){
         this.type = type;
         this.typeString = this.toString(); 

@@ -12,23 +12,10 @@ import { GraficaArbolAts } from "../ManejoErrores/GraficaArbolAts";
 import { Rep } from "../REPORTES/Rep";
 let CNodoError=require('../ManejoErrores/NodoError');
 let CErrores=require('../ManejoErrores/Errores');
-/**
- * @class Reasigna el valor de una variable existente
- */
-
-
-
 export class Opcion_metodo_funcion extends Node {
     contenido: Array<Node>;
     listaParams:any;
 
-    /**
-     * RECIBE LISTA DE INTRUCCIONES 
-     * TIPO
-     * ID
-     * LISTA_PARAMETROS_CON_TIPO
-     * FILA
-     */
     constructor(listaParams:any , contenido:Array<Node> , line: Number) {
         super(null, line, null);
         
@@ -38,7 +25,7 @@ export class Opcion_metodo_funcion extends Node {
     }
 
     execute(table: Table, tree: Tree):any {
-        /* UNA CLASE POSEE SU PROPIO AMBITO DE VARIABLES POR ESO LE CREO UNA TABLE */
+      
         if(Rep.t1 == true || Rep.t2 == true){
             Rep.addPARAMETROS(Rep.nombreMetodoActual , this.listaParams);
         }
@@ -59,11 +46,11 @@ export class Opcion_metodo_funcion extends Node {
         for (let i = 0; i < this.contenido.length; i++) {
             const res = this.contenido[i].execute(newtable, tree);
             if(res instanceof Break){
-                console.log("ERROR  BREAK "); // ACA EN ESTE CASO PUEDE VENIR UN BREAK Y SE TOMA EN CUENTA QUE PUEDE SER ERROR 
+                console.log("ERROR  BREAK "); 
                 CErrores.Errores.add(new CNodoError.NodoError("Semantico","BREAK fuera de un ciclo   "+""+" Columna:"+ res.column ,res.line));
                 return res;
             }else if(res instanceof Continue){
-                console.log("ERROR  CONTINUE "); // ACA EN ESTE CASO PUEDE VENIR UN BREAK Y SE TOMA EN CUENTA QUE PUEDE SER ERROR 
+                console.log("ERROR  CONTINUE "); 
                 CErrores.Errores.add(new CNodoError.NodoError("Semantico","CONTINUE fuera de un ciclo   "+" Columna:"+ res.column ,res.line));
                 return res;
             }else if(res instanceof Return_metodo){

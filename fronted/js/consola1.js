@@ -156,6 +156,26 @@ function AbrirArchivo(files){
     var file_input=document.getElementById("fileInput");
     document.getElementById('fileInput').value="";
 }
+
+
+function errores() {
+    var ventana_present=document.getElementById(get_vent());
+    var texto=ventana_present.value;
+    alert("Imput: "+ texto);
+    var url = 'http://localhost:3000/errores/';
+        var divError = document.getElementById("err1");
+    $.post(url, { text1: texto }, function (data, status) {
+        if (status.toString() == "success") {
+            console.log(data)
+            alert("Respuesta: " + data.toString());
+  divError.innerHTML = data.toString();
+        } else {
+            alert("Error Conected:" + status);
+        }
+    });
+  }
+
+
 function DescargarArchivo(){
     var ta=document.getElementById(get_vent());
     var hoy=new Date();

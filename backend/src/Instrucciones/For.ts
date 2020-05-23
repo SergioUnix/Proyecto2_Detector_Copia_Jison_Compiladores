@@ -11,21 +11,13 @@ import {Type } from "../utils/Type";
 import { Return_funcion } from "./Return_funcion";
 import { Return_metodo } from "./Return_metodo";
 import { GraficaArbolAts } from "../ManejoErrores/GraficaArbolAts";
-/**
- * @class
- */
+
 export class For extends Node {
     condition: Node;
     List: Array<Node>;
     Dec_for : Node;
     Incre_decre: Node; 
-    /**
-     * @constructor 
-     * @param condition Condicion que debe ser tipo boolean
-     * @param List Lista de instrucciones a ejecutar mientras la condicion sea verdadera
-     * @param line Linea de la sentencia while
-     * @param column 
-     */
+   
     constructor(Dec_for:Node ,  condition: Node , Incre_decre :Node , List: Array<Node>, line: Number, column: Number) {
         super(null, line, column);
         this.Dec_for = Dec_for; 
@@ -55,7 +47,7 @@ export class For extends Node {
 
 
 
-        /* ABRO EL AMBITO DE INSTRUCCIONES */ 
+       
         GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>BLOQUE_INSTRUCCIONES\n");
         GraficaArbolAts.add("<ul>\n");
             for (let i = 0; i < this.List.length; i++) {
@@ -64,7 +56,7 @@ export class For extends Node {
             
             
             if (res instanceof Continue) {
-                break;// frena el for y pues sale y abajo se cierra su etiqueta 
+                break;
             } else if (res instanceof Break) {
 
                 GraficaArbolAts.add("</ul>\n");
@@ -85,14 +77,7 @@ export class For extends Node {
 
         GraficaArbolAts.add("</ul>\n");
         GraficaArbolAts.add("</li>\n");
-        /* CIERRO EL AMBITO DE INSTRUCCIONES */ 
-
-
-
-
-
-
-
+       
         GraficaArbolAts.add("</ul>\n");
         GraficaArbolAts.add("</li>\n");
            

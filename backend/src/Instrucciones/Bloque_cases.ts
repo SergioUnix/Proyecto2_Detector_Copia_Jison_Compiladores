@@ -39,7 +39,7 @@ export class Bloque_cases extends Node{
   
 
                 if(res instanceof Break){
-                   // se acepta , no hay clavo 
+         
                    console.log("un break se acepta adentro de un case :) ");
                 }else if(res instanceof Continue){
                     console.log("viene un continue sera que esta adentro de un ciclo ?");

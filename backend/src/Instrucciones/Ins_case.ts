@@ -18,7 +18,7 @@ export class Ins_case extends Node {
     constructor(n: Node, ins: Array<Node>, ins_break:Node, line: Number, column: Number) {
         super(null, line, column);
         this.EXPRESION = n;
-        this.INSTRUCCIONES = ins;  /* GENERA UN VECTOR */
+        this.INSTRUCCIONES = ins; 
         this.Ins_break = ins_break; 
     }
 
@@ -37,7 +37,7 @@ export class Ins_case extends Node {
             }else if(res instanceof Continue){
                 return res;
             }else if(res instanceof Return_metodo){
-                console.log("RETURN METODO"); // NO PUEDO DETERMINAR AUN SI ES ERROR O NO ASI QUE LO DEVUELVO 
+                console.log("RETURN METODO");  
                 return res;
             }else if(res instanceof Return_funcion){
                 console.log("RETURN FUNCION");

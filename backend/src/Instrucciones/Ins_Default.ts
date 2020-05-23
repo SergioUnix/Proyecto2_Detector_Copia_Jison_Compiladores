@@ -30,12 +30,12 @@ export class Ins_Default extends Node {
         for (let i = 0; i < this.INSTRUCCIONES.length; i++) {
             const res = this.INSTRUCCIONES[i].execute(newtable, tree);
             if(res instanceof Break){
-               // se acepta 
+         
                console.log("un break se acepta adentro de un case :) ");
             }else if(res instanceof Continue){
-                return res; // nno puedo determinar si ess error ya que el switch podria estar adentro de un ciclo 
+                return res; 
             }else if(res instanceof Return_metodo){
-                console.log("RETURN METODO"); // NO PUEDO DETERMINAR AUN SI ES ERROR O NO ASI QUE LO DEVUELVO 
+                console.log("RETURN METODO"); 
                 return res;
             }else if(res instanceof Return_funcion){
                 console.log("RETURN FUNCION");

@@ -26,7 +26,7 @@ export class Sentencia_switch extends Node {
         GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>SENTENCIA_SWITCH \n");
         GraficaArbolAts.add("<ul>\n");
 
-        // AHORA LA CARPETA EXPRESSION 
+  
         GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>Expresion\n");
         GraficaArbolAts.add("<ul>");
         this.EXPRESION.execute(table, tree);
@@ -41,7 +41,7 @@ export class Sentencia_switch extends Node {
 
             res = this.cases.execute(newtable,tree); 
             if(res instanceof Break){
-             // no hay clavo sale y cierra hasta abajo 
+   
              }else if(res instanceof Continue){
                 GraficaArbolAts.add("</ul>\n");
                 GraficaArbolAts.add("</li>\n");

@@ -4,17 +4,11 @@ import { Tree } from "../Simbols/Tree";
 import { GraficaArbolAts } from "../ManejoErrores/GraficaArbolAts";
 import { Rep } from "../REPORTES/Rep";
 
-/**
- * @class RETURN PARA LAS FUNCIONES 
- */
+
 export class Return_funcion extends Node {
     nombre:string; 
     expresion:Node;
-    /**
-     * @constructor Retorna el objeto continue creado
-     * @param line Linea del continue
-     * @param column Columna del continue
-     */
+
     constructor(nombre:string,exp: Node,line: Number, column: Number) {
         super(null, line, column);
         this.nombre = nombre; 
