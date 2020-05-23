@@ -283,7 +283,7 @@ class Rep {
 
       reportes_cadena += "<body >\n";
       reportes_cadena += "<div align=\"center\">  \n";
-      reportes_cadena += "<h1 class = \"tituloTb\">Copy function report </h1>\n";
+      reportes_cadena += "<h1 style=\"color: rgb(179, 84, 12);\" id=\"copyClass\">Copy function report</h1> \n";
       reportes_cadena += "<table border=\"2\" align=\"center\" class=\"tabl\">\n";
       reportes_cadena += "<tr>\n";
       reportes_cadena += "<th>#</th><th>Name Class</th><th>Name Method/Function </th><th>TIPO</th><th> List of Parameters </th><th>Type Return</th>\n";
